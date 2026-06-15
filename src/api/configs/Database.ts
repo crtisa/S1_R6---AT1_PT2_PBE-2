@@ -123,6 +123,18 @@ export async function initializeDatabase(): Promise<void> {
                     ON UPDATE CASCADE
             );
         `);
+
+        // Tabela pedidos
+       await tempConnection.query(`
+           CREATE TABLE IF NOT EXISTS pedidos (
+               IdPedido INT PRIMARY KEY AUTO_INCREMENT,
+               StatusPedido VARCHAR(30) NOT NULL,
+               ValorTotal DECIMAL(12,2) NOT NULL,
+               DataCad DATETIME,
+               DataMod DATETIME
+           );
+       `);
+       
         // Tabela pedidos
         await tempConnection.query(`
             CREATE TABLE IF NOT EXISTS itens_pedidos (
@@ -146,16 +158,6 @@ export async function initializeDatabase(): Promise<void> {
             );
         `);
 
-         // Tabela pedidos
-        await tempConnection.query(`
-            CREATE TABLE IF NOT EXISTS pedidos (
-                IdPedido INT PRIMARY KEY AUTO_INCREMENT,
-                StatusPedido VARCHAR(30) NOT NULL,
-                ValorTotal DECIMAL(12,2) NOT NULL,
-                DataCad DATETIME,
-                DataMod DATETIME
-            );
-        `);
 
 
         await tempConnection.end();
