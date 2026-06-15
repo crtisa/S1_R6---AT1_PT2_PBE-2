@@ -41,7 +41,10 @@ class Database {
                 waitForConnections: true,
                 connectionLimit: 50,
                 queueLimit: 0,
-                timezone: 'Z'
+                timezone: 'Z',
+                ssl: {
+                    rejectUnauthorized: false
+                }
             });
 
             console.log("✅ Pool de conexão MySQL criado com sucesso.");
@@ -101,7 +104,7 @@ export async function initializeDatabase(): Promise<void> {
             );
         `);
 
-        
+
 
         // Tabela produtos
         await tempConnection.query(`
@@ -122,7 +125,7 @@ export async function initializeDatabase(): Promise<void> {
         `);
 
         // Tabela pedidos
-       await tempConnection.query(`
+        await tempConnection.query(`
            CREATE TABLE IF NOT EXISTS pedidos (
                IdPedido INT PRIMARY KEY AUTO_INCREMENT,
                StatusPedido VARCHAR(30) NOT NULL,
