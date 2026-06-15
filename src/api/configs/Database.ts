@@ -144,7 +144,7 @@ export async function initializeDatabase(): Promise<void> {
                 DataMod DATETIME,
                 CONSTRAINT fk_pedido_id_pedido
                     FOREIGN KEY (FK_IdPedido)
-                    REFERENCES pedidos(IdPedido)
+                    REFERENCES pedidos(IdPedido),
                 CONSTRAINT fk_pedido_produtos
                     FOREIGN KEY (FK_IdProduto)
                     REFERENCES produtos(idProduto)
