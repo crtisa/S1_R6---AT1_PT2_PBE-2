@@ -147,7 +147,7 @@ export async function initializeDatabase(): Promise<void> {
                     REFERENCES pedidos(IdPedido)
                 CONSTRAINT fk_pedido_produtos
                     FOREIGN KEY (FK_IdProduto)
-                    REFERENCES pedidos(idProduto)
+                    REFERENCES produtos(idProduto)
             );
         `);
 
