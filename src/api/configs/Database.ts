@@ -118,8 +118,6 @@ export async function initializeDatabase(): Promise<void> {
                 CONSTRAINT fk_produto_categoria
                     FOREIGN KEY (FK_IdCategoria)
                     REFERENCES categorias(idCategoria)
-                    ON DELETE SET NULL
-                    ON UPDATE CASCADE
             );
         `);
 
@@ -147,13 +145,9 @@ export async function initializeDatabase(): Promise<void> {
                 CONSTRAINT fk_pedido_id_pedido
                     FOREIGN KEY (FK_IdPedido)
                     REFERENCES pedidos(IdPedido)
-                    ON DELETE SET NULL
-                    ON UPDATE CASCADE,
                 CONSTRAINT fk_pedido_produtos
                     FOREIGN KEY (FK_IdProduto)
                     REFERENCES pedidos(idProduto)
-                    ON DELETE SET NULL
-                    ON UPDATE CASCADE
             );
         `);
 
