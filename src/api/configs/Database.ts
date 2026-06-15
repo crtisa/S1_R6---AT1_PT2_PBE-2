@@ -107,15 +107,14 @@ export async function initializeDatabase(): Promise<void> {
         await tempConnection.query(`
             CREATE TABLE IF NOT EXISTS produtos (
                 idProduto INT PRIMARY KEY AUTO_INCREMENT,
-                FK_IdCategoria INT,
-                nomeProduto VARCHAR(30) NOT NULL,
+                FK_IdCategoria INT NOT NULL,
+                NomeProduto VARCHAR(30) NOT NULL,
                 DescricaoProduto VARCHAR(30),
-                PrecoProduto DECIMAL(10
-                ,2) NOT NULL,
-                QuantidadeEstoque INT,
+                PrecoProduto DECIMAL(10,2) NOT NULL,
+                QuantidadeEstoque INT NOT NULL DEFAULT 0,
                 VinculoImagem VARCHAR(255),
-                DataCad DATETIME,
-                DataMod DATETIME
+                DataCad DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                DataMod DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 CONSTRAINT fk_produto_categoria
                     FOREIGN KEY (FK_IdCategoria)
                     REFERENCES categorias(idCategoria)
@@ -134,7 +133,7 @@ export async function initializeDatabase(): Promise<void> {
                DataMod DATETIME
            );
        `);
-       
+
         // Tabela pedidos
         await tempConnection.query(`
             CREATE TABLE IF NOT EXISTS itens_pedidos (
